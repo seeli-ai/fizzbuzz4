@@ -3,23 +3,24 @@ import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-@app.route(route="FizzBuzz")
-def FizzBuzz(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
+# Passing data to the function via route parameter
+# Example: http://localhost:7071/api/parameter_by_route/Markus
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
 
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+@app.route(route="FizzBuzz/{number}")
+def parameter_by_route(req: func.HttpRequest) -> func.HttpResponse:
+
+    # Get the value of the route parameter
+    number_as_string = req.route_params.get('number')
+    logging.info(f"FizzBuzz called with {number_as_string}")
+
+    # Convert the string to a number
+
+    # do your magic here
+
+    result = "MiauWuff"
+
+    logging.info(result)
+
+    # a http triggered function always returns a http-response
+    return func.HttpResponse(result)

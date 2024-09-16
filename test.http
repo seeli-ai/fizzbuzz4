@@ -1,1 +1,13 @@
-http://localhost:7071/api/FizzBuzz
+http://localhost:7071/api/FizzBuzz/19
+
+###
+http://localhost:7071/api/FizzBuzz/21
+
+
+###
+http://localhost:7071/api/FizzBuzz/25
+
+
+
+###
+http://localhost:7071/api/FizzBuzz/30
